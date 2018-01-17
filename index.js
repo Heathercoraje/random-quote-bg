@@ -29,7 +29,7 @@ var content = [
   greeting.innerText = (time<12)? 'Good morning':'Good afternoon';
   quote.innerText= content[index].quote;
   author.innerHTML= content[index].author;
-  setTimeout(updateQuote, 10000); // invoke every 10 sec
+  setTimeout(getQuote, 10000); // invoke every 10 sec
 
   next.addEventListener('click', getQuote );
   tweet.addEventListener('click', shareTweet(content[index]));
