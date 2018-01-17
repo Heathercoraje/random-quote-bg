@@ -20,12 +20,21 @@ var content = [
   }
 ];
 
+var timer = setInterval(function(){
+  myTimer()
+}, 1000);
+
+function myTimer() {
+    var d = new Date();
+    var t = d.toLocaleTimeString();
+    var greeting = document.querySelector('#greeting');
+    greeting.innerHTML = t;
+}
+
 (function getQuote() {
-  var hour = new Date().getHours();
-  var greeting = document.querySelector('#greeting');
   var quote = document.querySelector('#quote');
   var author = document.querySelector('#author');
-  var index = Math.floor(Math.random() * Math.floor(content.length));
+  var index = Math.floor(Math.random() * Math.floor(3));
   var next = document.querySelector('#next');
   var tweet = document.querySelector('#tweet');
   var shareTweet = function(obj) {
@@ -34,12 +43,9 @@ var content = [
     console.log(link);
     tweet.href = link;
   }
-greeting.innerText = (hour < 12)? 'Good morning':'Good afternoon !' ;
   quote.innerText= content[index].quote;
   author.innerHTML= content[index].author;
-  setTimeout(getQuote, 10000); // invoke every 10 sec
-
-  next.addEventListener('click', getQuote );
+  setTimeout(getQuote, 5000); // invoke every 10 sec
+  next.addEventListener('click', getQuote);
   tweet.addEventListener('click', shareTweet(content[index]));
-
 })();
