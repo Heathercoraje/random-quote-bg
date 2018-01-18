@@ -21,25 +21,33 @@
     author: "James Altucher"
     }
   ];
-  
-  var index = Math.floor(Math.random() * Math.floor(content.length-1));
+
+  var bgList = ['./asset/bg0.jpg', './asset/bg1.jpg', './asset/bg2.jpeg', './asset/bg3.jpg']
+
+  var bgI = Math.floor(Math.random() * Math.floor(bgList.length-1));
+  var quoteI = Math.floor(Math.random() * Math.floor(content.length-1));
   var next = document.querySelector('#next');
   var tweet = document.querySelector('#tweet');
 
+  function updateBg () {
+    if (bgI > bgList.length -1) bgI = 0;
+    document.body.style.backgroundImage = `url(${bgList[bgI]})`;
+    bgI++
+  }
   function myTimer() {
     var d = new Date();
     var t = d.toLocaleTimeString();
-    var greeting = document.querySelector('#greeting');
-    greeting.innerHTML = t;
+    var time = document.querySelector('#time');
+    time.innerHTML = t;
   }
 
   function getQuote() {
     var quote = document.querySelector('#quote');
     var author = document.querySelector('#author');
-    if (index > content.length -1 ) index = 0;
-    quote.innerText= content[index].quote;
-    author.innerHTML= content[index].author;
-    index++;
+    if (quoteI > content.length -1 ) quoteI = 0;
+    quote.innerText= content[quoteI].quote;
+    author.innerHTML= content[quoteI].author;
+    quoteI++;
   }
 
   function shareTweet(obj) {
@@ -48,15 +56,17 @@
     tweet.href = link;
   }
 
+  updateBg();
+  var bgInterval = setInterval(updateBg, 60000);
   myTimer();
   var timer = setInterval(function(){ myTimer() }, 1000);
   getQuote();
-  var myInterval = setInterval(getQuote, 5000);
+  var myInterval = setInterval(getQuote, 10000);
 
   next.addEventListener('click', function() {
     clearInterval(myInterval);
     getQuote();
-    myInterval = setInterval(getQuote, 5000);
+    myInterval = setInterval(getQuote, 10000);
   });
-  tweet.addEventListener('click', shareTweet(content[index]));
+  tweet.addEventListener('click', shareTweet(content[quoteI]));
 })();

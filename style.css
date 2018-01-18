@@ -9,7 +9,7 @@
 body {
   width: 100%;
   height: 100vh;
-  background-image: url('./img/base1.jpeg');
+  transition: 2s;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -29,7 +29,7 @@ p, h1, button, footer, div, a {
   transform: translate(-50%, -50%);
 }
 
-.greeting {
+.time {
   font-weight: bold;
   letter-spacing: 0.2em;
 }
@@ -61,6 +61,6 @@ button:hover{
 }
 
 .fa.fa-github {
-  margin-top: 0.2em;
-  font-size: 1.5em;
+  width: 1em;
+  height: 1em;
 }
