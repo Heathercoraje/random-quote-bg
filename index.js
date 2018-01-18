@@ -1,26 +1,27 @@
-var content = [
-  {
-    quote: "“Short cuts make long delays.” ",
-    author: "J.R.R. Tolkien, The Fellowship of the Ring"
-  },
-  { quote: "“You are your own refuge. You can only save yourself.”",
-    author: "Guillaume Musso"
-  },
-  { quote:"“Most people quit because they look how far they have to go, not how far they have come.”",
-    author: "Ziad K. Abdelnour"
-  },
-  { quote:"“One of the best programming skills you can have is knowing when to walk away for awhile.”",
-    author: "Oscar Godson"
-  },
-  { quote:"“Quitting is never an option.”",
-    author: "Ana Ivanovic"
-  },
-  { quote:"“Quantity and persistence will get you the outcomes you need.”",
-    author: "James Altucher"
-  }
-];
 
 (function() {
+  var content = [
+    {
+      quote: "“Short cuts make long delays.” ",
+      author: "J.R.R. Tolkien, The Fellowship of the Ring"
+    },
+    { quote: "“You are your own refuge. You can only save yourself.”",
+    author: "Guillaume Musso"
+    },
+      { quote:"“Most people quit because they look how far they have to go, not how far they have come.”",
+      author: "Ziad K. Abdelnour"
+    },
+    { quote:"“One of the best programming skills you can have is knowing when to walk away for awhile.”",
+    author: "Oscar Godson"
+    },
+    { quote:"“Quitting is never an option.”",
+    author: "Ana Ivanovic"
+    },
+    { quote:"“Quantity and persistence will get you the outcomes you need.”",
+    author: "James Altucher"
+    }
+  ];
+  
   var index = Math.floor(Math.random() * Math.floor(content.length-1));
   var next = document.querySelector('#next');
   var tweet = document.querySelector('#tweet');
