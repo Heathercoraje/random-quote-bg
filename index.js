@@ -20,32 +20,42 @@ var content = [
   }
 ];
 
-var timer = setInterval(function(){
-  myTimer()
-}, 1000);
+(function() {
+  var index = Math.floor(Math.random() * Math.floor(content.length-1));
+  var next = document.querySelector('#next');
+  var tweet = document.querySelector('#tweet');
 
-function myTimer() {
+  function myTimer() {
     var d = new Date();
     var t = d.toLocaleTimeString();
     var greeting = document.querySelector('#greeting');
     greeting.innerHTML = t;
-}
+  }
 
-(function getQuote() {
-  var quote = document.querySelector('#quote');
-  var author = document.querySelector('#author');
-  var index = Math.floor(Math.random() * Math.floor(3));
-  var next = document.querySelector('#next');
-  var tweet = document.querySelector('#tweet');
-  var shareTweet = function(obj) {
+  function getQuote() {
+    var quote = document.querySelector('#quote');
+    var author = document.querySelector('#author');
+    if (index > content.length -1 ) index = 0;
+    quote.innerText= content[index].quote;
+    author.innerHTML= content[index].author;
+    index++;
+  }
+
+  function shareTweet(obj) {
     var data = obj.quote.concat('  ', obj.author);
     var link = "https://twitter.com/intent/tweet?text=".concat(data);
-    console.log(link);
     tweet.href = link;
   }
-  quote.innerText= content[index].quote;
-  author.innerHTML= content[index].author;
-  setTimeout(getQuote, 5000); // invoke every 10 sec
-  next.addEventListener('click', getQuote);
+
+  myTimer();
+  var timer = setInterval(function(){ myTimer() }, 1000);
+  getQuote();
+  var myInterval = setInterval(getQuote, 5000);
+
+  next.addEventListener('click', function() {
+    clearInterval(myInterval);
+    getQuote();
+    myInterval = setInterval(getQuote, 5000);
+  });
   tweet.addEventListener('click', shareTweet(content[index]));
 })();
